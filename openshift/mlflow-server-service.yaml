@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlflow-server
+spec:
+  ports:
+    - name: mlflow-server
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    name: mlflow-server
+  type: ClusterIP
