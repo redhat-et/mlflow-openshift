@@ -23,3 +23,6 @@ In order to setup MLFlow on OpenShift you will need the following:
 - **OpenShift cluster** with namespace available and sufficient privileges/memory to deploy
 - **PostgreSQL database** - for storing MLFlow metadata
 - **S3 bucket** - for storing the MLFLow artifacts such as model training files (CSVs)
+
+## Setup Guide
+To learn how to setup MLFlow on OpenShift refer to [this guide](https://github.com/hemajv/mlflow-openshift/blob/main/openshift/README.md).
