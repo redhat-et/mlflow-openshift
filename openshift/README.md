@@ -36,4 +36,21 @@ Once the necessary fields are edited click on `Create`.
  
  ### MLFlow Service
  
+ **Step 1**: We also need to create a service for MLFlow. This can be done using the OpenShift console by navigating to `Networking -> Services -> Create Service`. You can copy and paste [this service yaml](https://github.com/hemajv/mlflow-openshift/blob/main/openshift/mlflow-server-service.yaml) and then click on `Create`. The service `mlflow-server` will be created.
  
+ <img width="1123" alt="Screenshot 2023-02-28 at 11 50 42 AM" src="https://user-images.githubusercontent.com/7343099/221963293-d51f2ef0-e3d2-4fa3-945f-afffa8c5749c.png">
+ 
+ **Step 2**: Once the `mlflow-server` service is created, we can add a route to it i.e generate an HTTP link which is accessible to interact with MLFlow. To generate a route navigate to `Networking -> Routes -> Create Route`. Provide the following details:
+- **Route Name**: You can name it as `mlflow`
+- **Service**: Select the service which you created in the above step (step 1)
+- **Target Port**: 5000 TCP
+
+You can leave the `Hostname` blank and it will automatically be generated for you.
+
+<img width="1357" alt="Screenshot 2023-02-28 at 11 54 48 AM" src="https://user-images.githubusercontent.com/7343099/221964695-f821414d-6ad8-4534-ac4c-171b846f9ba2.png">
+
+You should then be able to see the route created as follows:
+
+<img width="1630" alt="Screenshot 2023-02-28 at 11 59 18 AM" src="https://user-images.githubusercontent.com/7343099/221965205-8953afbc-da65-47df-a7e0-635cad3ebe1c.png">
+
+Click on the link (mentioned under `Location` in the above screenshot) generated to access the MLFlow UI.
