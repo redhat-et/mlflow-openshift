@@ -14,7 +14,7 @@ spec:
     spec:
       serviceAccountName: <sa-account>
       containers:
-        - image: "quay.io/harshad16/mlflow:v0.1.1"
+        - image: "quay.io/harshad16/mlflow:v0.1.2"
           imagePullPolicy: IfNotPresent
           name: mlflow
           command: 
