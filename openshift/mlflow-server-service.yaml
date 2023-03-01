@@ -7,9 +7,9 @@ metadata:
 spec:
   ports:
     - name: mlflow-server
-      port: 5000
+      port: 8443
       protocol: TCP
-      targetPort: 5000
+      targetPort: 8443
   selector:
     name: mlflow-server
   type: ClusterIP
