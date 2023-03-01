@@ -2,12 +2,25 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mlflow-server
+  annotations:
+      service.alpha.openshift.io/serving-cert-secret-name: proxy-tls
 spec:
   ports:
     - name: mlflow-server
-      port: 5000
+      port: 8443
       protocol: TCP
-      targetPort: 5000
+      targetPort: 8443
   selector:
     name: mlflow-server
   type: ClusterIP
+---
+apiVersion: v1
+kind: Route
+metadata:
+  name: mlflow
+spec:
+  to:
+    kind: Service
+    name: mlflow-server
+  tls:
+    termination: Reencrypt

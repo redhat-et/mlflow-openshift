@@ -12,8 +12,52 @@ spec:
       labels:
         name: mlflow-server
     spec:
-      serviceAccountName: <sa-account>
+      serviceAccountName: mlflow
       containers:
+        - name: oauth-proxy
+          args:
+            - --https-address=:8443
+            - --provider=openshift
+            - --openshift-service-account=mlflow
+            - --upstream=http://localhost:5000
+            - --tls-cert=/etc/tls/private/tls.crt
+            - --tls-key=/etc/tls/private/tls.key
+            - --cookie-secret=SECRET
+            - '--openshift-delegate-urls={"/": {"resource": "services", "verb": "get", "name": "mlflow-server"}}'
+          image: registry.redhat.io/openshift4/ose-oauth-proxy:v4.12.0
+          ports:
+            - containerPort: 8443
+              name: https
+          livenessProbe:
+            httpGet:
+              path: /oauth/healthz
+              port: 8443
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /oauth/healthz
+              port: 8443
+              scheme: HTTPS
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          volumeMounts:
+            - mountPath: /etc/tls/private
+              name: proxy-tls
         - image: "quay.io/harshad16/mlflow:v0.1.1"
           imagePullPolicy: IfNotPresent
           name: mlflow
@@ -24,7 +68,7 @@ spec:
             - '--host'
             - '0.0.0.0'
             - '--backend-store-uri'
-            - 'postgresql://<db-user>:<db-pwd>@postgresql.<namespace>.svc:5432/<db-name>?sslmode=disable'
+            - 'postgresql://etds:emergingtech:postgresql.rosa.svc:5432/etdatascience?sslmode=disable'
           ports:
             - containerPort: 5000
               protocol: TCP
@@ -35,3 +79,7 @@ spec:
             limits:
               cpu: "500m"
               memory: 1Gi
+      volumes:
+        - name: proxy-tls
+          secret:
+            secretName: proxy-tls
