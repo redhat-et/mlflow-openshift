@@ -15,7 +15,7 @@ You can find more documentation on their official website at https://mlflow.org/
 
 ## OpenShift
 
-We will be deploying MLFlow on an OpenShift cluster. OpenShift is a product developed at Red Hat which is a unified platform to build, modernize, and deploy applications at scale. OpenShift brings together tested and trusted services to reduce the friction of developing, modernizing, deploying, running, and managing applications. Built on Kubernetes, it delivers a consistent experience across public cloud, on-premise, hybrid cloud, or edge architecture. Whether you're building new applications or modernizing existing ones, OpenShift supports the most demanding workloads including AI/ML, edge, and more. 
+We will be deploying MLFlow on an OpenShift cluster with an [OAuth proxy](https://github.com/openshift/oauth-proxy) i.e a reverse proxy that provides authentication with OpenShift via OAuth and Kubernetes service accounts. OpenShift is a product developed at Red Hat which is a unified platform to build, modernize, and deploy applications at scale. OpenShift brings together tested and trusted services to reduce the friction of developing, modernizing, deploying, running, and managing applications. Built on Kubernetes, it delivers a consistent experience across public cloud, on-premise, hybrid cloud, or edge architecture. Whether you're building new applications or modernizing existing ones, OpenShift supports the most demanding workloads including AI/ML, edge, and more. 
 
 ## Deployment
 ### Pre-Requisites
