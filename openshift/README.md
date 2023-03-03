@@ -15,7 +15,7 @@ To start you will need the following:
 
 ### MLFlow Deployment
 
-We will be deploying MLFlow with [OAuth proxy](https://github.com/openshift/oauth-proxy) i.e. a reverse proxy that provides authentication with OpenShift via OAuth and Kubernetes service accounts. This will require only users with authenticated accounts to access MLFlow.
+We will be deploying MLFlow with an [OAuth proxy](https://github.com/openshift/oauth-proxy) i.e. a reverse proxy that provides authentication with OpenShift via OAuth and Kubernetes service accounts. This will require only users with authenticated accounts to access MLFlow.
 
 **Step 1**: Create a new project in your OpenShift cluster and provide a suitable name. You can either use the web console UI to do this or using the `oc` CLI by running `oc new-project <project-name>`.
 
