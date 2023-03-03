@@ -15,6 +15,8 @@ To start you will need the following:
 
 ### MLFlow Deployment
 
+We will be deploying MLFlow with [OAuth proxy](https://github.com/openshift/oauth-proxy) i.e. a reverse proxy that provides authentication with OpenShift via OAuth and Kubernetes service accounts. This will require only users with authenticated accounts to access MLFlow.
+
 **Step 1**: Create a new project in your OpenShift cluster and provide a suitable name. You can either use the web console UI to do this or using the `oc` CLI by running `oc new-project <project-name>`.
 
 <img width="676" alt="Screenshot 2023-02-28 at 10 27 24 AM" src="https://user-images.githubusercontent.com/7343099/221952209-4e8cc300-a224-4ade-b70b-833b26a561e3.png">
@@ -53,7 +55,11 @@ You should then be able to see the route created as follows:
 
 <img width="1630" alt="Screenshot 2023-02-28 at 11 59 18 AM" src="https://user-images.githubusercontent.com/7343099/221965205-8953afbc-da65-47df-a7e0-635cad3ebe1c.png">
 
-Click on the link (mentioned under `Location` in the above screenshot) generated to access the MLFlow UI. It will request the user to login and if successful they will be able to view the MLFlow UI:
+Click on the link (mentioned under `Location` in the above screenshot) generated to access the MLFlow UI. It will request the user to login:
+
+<img width="773" alt="Screenshot 2023-03-03 at 12 22 04 PM" src="https://user-images.githubusercontent.com/7343099/222821410-fdf14e10-dfb6-485d-9c13-f6b466542b56.png">
+
+ After the user successfully logins in, they will be able to view the MLFlow UI:
 
 <img width="956" alt="Screenshot 2023-03-01 at 2 20 07 PM" src="https://user-images.githubusercontent.com/7343099/222278411-3a25ef3b-c124-4877-a68e-5017f5ab2c29.png">
 
