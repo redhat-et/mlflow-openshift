@@ -23,7 +23,7 @@ spec:
             - --tls-cert=/etc/tls/private/tls.crt
             - --tls-key=/etc/tls/private/tls.key
             - --cookie-secret=SECRET
-            - '--openshift-delegate-urls={"/": {"resource": "services", "verb": "get", "name": "mlflow-server"}}'
+            - '--openshift-delegate-urls={"/": {"group":"route.openshift.io", "resource":"routes", "verb": "get", "namespace":"rosa"}}'
           image: registry.redhat.io/openshift4/ose-oauth-proxy:v4.12.0
           ports:
             - containerPort: 8443
