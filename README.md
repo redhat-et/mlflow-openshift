@@ -25,4 +25,4 @@ In order to setup MLFlow on OpenShift you will need the following:
 - **S3 bucket** - for storing the MLFLow artifacts such as model training files (CSVs)
 
 ## Setup Guide
-To learn how to setup MLFlow on OpenShift refer to [this guide](https://github.com/hemajv/mlflow-openshift/blob/main/openshift/README.md).
+To learn how to setup MLFlow on OpenShift refer to [this guide](https://github.com/redhat-et/mlflow-openshift/blob/main/openshift/README.md).
