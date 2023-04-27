@@ -68,7 +68,7 @@ spec:
             - '--host'
             - '0.0.0.0'
             - '--backend-store-uri'
-            - 'postgresql://<db user>:<db password>:postgresql.<project/namespace>.svc:5432/<db name>?sslmode=disable'
+            - 'postgresql://<db user>:<db password>@postgresql.<project/namespace>.svc:5432/<db name>?sslmode=disable'
           ports:
             - containerPort: 5000
               protocol: TCP
