@@ -21,7 +21,7 @@ We will be deploying MLFlow with an [OAuth proxy](https://github.com/openshift/o
 
 <img width="676" alt="Screenshot 2023-02-28 at 10 27 24 AM" src="https://user-images.githubusercontent.com/7343099/221952209-4e8cc300-a224-4ade-b70b-833b26a561e3.png">
 
-**Step 2**: Create a service account by navigating to `User Managment -> ServiceAccounts -> Create Service Account`. You can provide the service account name as `mlflow`. Once the service account is created, you will need to provide additional privileges to it so that it can be used by MLFlow to write to the pod (for storing artifats) by running: `oc adm policy add-scc-to-user privileged -z <service-account-name> -n <project-name>`. If you don't have sufficient acces to run this command, reach out to the cluster admin admin request them to run the command.
+**Step 2**: Create a service account by navigating to `User Managment -> ServiceAccounts -> Create Service Account`. You can provide the service account name as `mlflow`. Use [this](https://github.com/redhat-et/mlflow-openshift/blob/main/openshift/mlflow-sa.yaml) service account YAML. Once the service account is created, you will need to provide additional privileges to it so that it can be used by MLFlow to write to the pod (for storing artifats) by running: `oc adm policy add-scc-to-user privileged -z <service-account-name> -n <project-name>`. If you don't have sufficient acces to run this command, reach out to the cluster admin admin request them to run the command.
 
 <img width="1295" alt="Screenshot 2023-02-28 at 10 49 22 AM" src="https://user-images.githubusercontent.com/7343099/221952299-9c4de5ba-20c1-4815-8bda-2a6088a9149f.png">
 
