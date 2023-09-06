@@ -45,8 +45,8 @@ Once the necessary fields are edited click on `Create`.
  **Step 1**: We also need to create a service for MLFlow. This can be done using the OpenShift console by navigating to `Networking -> Services -> Create Service`. You can copy and paste [this service yaml](https://github.com/redhat-et/mlflow-openshift/blob/main/openshift/mlflow-server-service.yaml) and then click on `Create`. The service `mlflow-server` will be created.
  
  <img width="1123" alt="Screenshot 2023-02-28 at 11 50 42 AM" src="https://user-images.githubusercontent.com/7343099/221963293-d51f2ef0-e3d2-4fa3-945f-afffa8c5749c.png">
- 
- **Step 2**: Once the `mlflow-server` service is created, we can add a route to it i.e generate an HTTPS link which is accessible to interact with MLFlow. To generate a route navigate to `Networking -> Routes -> Create Route -> Edit YAML (top right)`. Copy and paste the YAML as defined [here](https://github.com/redhat-et/mlflow-openshift/blob/main/openshift/mlflow-server-service.yaml).
+
+**Step 2**: Once the `mlflow-server` service is created, we can add a route to it i.e generate an HTTPS link which is accessible to interact with MLFlow. To generate a route navigate to `Networking -> Routes -> Create Route -> Edit YAML (top right)`. Copy and paste the YAML as defined [here](https://github.com/redhat-et/mlflow-openshift/blob/main/openshift/mlflow-server-service.yaml).
  
  <img width="1008" alt="Screenshot 2023-03-01 at 2 01 27 PM" src="https://user-images.githubusercontent.com/7343099/222275074-88b69763-023b-48b8-8f21-713614ef8175.png">
 
@@ -61,6 +61,17 @@ Click on the link (mentioned under `Location` in the above screenshot) generated
  After the user successfully logins in, they will be able to view the MLFlow UI:
 
 <img width="956" alt="Screenshot 2023-03-01 at 2 20 07 PM" src="https://user-images.githubusercontent.com/7343099/222278411-3a25ef3b-c124-4877-a68e-5017f5ab2c29.png">
+
+
+### Granting Access to Users
+
+ **Step 1**: Create a **service account**. This can be done by navigating to `User Managment -> ServiceAccounts -> Create Service Account`. Use [this](https://github.com/redhat-et/mlflow-openshift/blob/main/openshift/mlflow-access-sa.yaml) service account YAML.
+
+ **Step 2**: Create a **Role**. You can use [this](https://github.com/redhat-et/mlflow-openshift/blob/main/openshift/role-mlflow-sa-oauth-access.yaml) YAML to create a new Role that will have the necessary privileges to allow users to access the MLflow server.
+
+ **Step 3**: Create **RoleBindings**. We will now create RoleBindings by navigating to `User Managment -> RoleBindings -> Create RoleBinding` and create the role bindings for the following:
+ *  `mlflow-rbac` - RoleBinding name for the service account created in step 1. Select the appropriate namespace, select Role name as the role created in step 2 i.e `mlflow-sa-oauth-access`. Select the **subject as `Service Account`** and choose the approproate subject namespace and subject name as `mlflow-access`.
+ *  New user - For any new user you would like to provide access to the MLflow server, provide a suitable RoleBinding name, select the appropriate namespace, select the Role name as the role created in step 2 i.e `mlflow-sa-oauth-access`, **subject as `User`** and provide **subject name as the user's email ID**.
 
 Congratulations! You are all set to use and explore MLFlow :tada:
 
