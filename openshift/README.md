@@ -71,7 +71,7 @@ Click on the link (mentioned under `Location` in the above screenshot) generated
 
  **Step 3**: Create **RoleBindings**. We will now create RoleBindings by navigating to `User Managment -> RoleBindings -> Create RoleBinding` and create the role bindings for the following:
  *  `mlflow-rbac` - RoleBinding name for the service account created in step 1. Select the appropriate namespace, select Role name as the role created in step 2 i.e `mlflow-sa-oauth-access`. Select the **subject as `Service Account`** and choose the approproate subject namespace and subject name as `mlflow-access`.
- *  New user - For any new user you would like to provide access to the MLflow server, provide a suitable RoleBinding name, select the appropriate namespace, select the Role name as the role created in step 2 i.e `mlflow-sa-oauth-access`, **subject as `User`** and provide **subject name as the user's email ID**.
+ *  **New User** - For any new user you would like to provide access to the MLflow server, provide a suitable RoleBinding name, select the appropriate namespace, select the Role name as the role created in step 2 i.e `mlflow-sa-oauth-access`, **subject as `User`** and provide **subject name as the user's email ID**.
 
 Congratulations! You are all set to use and explore MLFlow :tada:
 
