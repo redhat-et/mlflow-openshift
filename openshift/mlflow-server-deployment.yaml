@@ -24,6 +24,7 @@ spec:
             - --tls-key=/etc/tls/private/tls.key
             - --cookie-secret=SECRET
             - '--openshift-delegate-urls={"/": {"group":"route.openshift.io", "resource":"routes", "verb": "get", "namespace":"rosa"}}'
+            - --openshift-sar={"verb":"get","resource":"routes","resourceAPIGroup":"route.openshift.io","namespace":"mlflow"}
           image: registry.redhat.io/openshift4/ose-oauth-proxy:v4.12.0
           ports:
             - containerPort: 8443
@@ -58,7 +59,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/tls/private
               name: proxy-tls
-        - image: "quay.io/harshad16/mlflow:v0.1.1"
+        - image: "quay.io/harshad16/mlflow:v0.2.0"
           imagePullPolicy: IfNotPresent
           name: mlflow
           command: 
