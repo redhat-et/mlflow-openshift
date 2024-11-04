@@ -59,7 +59,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/tls/private
               name: proxy-tls
-        - image: "quay.io/harshad16/mlflow:v0.2.0"
+        - image: "docker.io/hemaveeradhi/mlflow:amd64"
           imagePullPolicy: IfNotPresent
           name: mlflow
           command: 
